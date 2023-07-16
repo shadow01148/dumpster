@@ -2,7 +2,6 @@ import time
 import aiocsv
 import aiofiles
 import discord
-from numpy import random
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix='>', self_bot=True)
