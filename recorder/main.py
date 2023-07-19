@@ -21,13 +21,13 @@ async def on_message(message):
 
     author = message.author.name
     content = message.clean_content or "N/A"
-    channel = message.channel.name
+    channel = message.channel.id
     channel_id = message.channel.id
 
     if isinstance(message.channel, discord.Thread):
-        channel = "[FORUM] " + message.channel.name
+        channel = "[FORUM] " + message.channel.id
     if isinstance(message.channel, discord.TextChannel):
-        channel = "[CHANNEL]" + message.channel.name
+        channel = "[CHANNEL]" + message.channel.id
 
     async with aiofiles.open(f"{message.guild.id}.csv", "a+", encoding="utf-8", newline="") as f:
         writer = aiocsv.AsyncWriter(f)
@@ -52,14 +52,14 @@ async def on_message_delete(message):
 
     author = message.author.name
     content = message.clean_content or "N/A"
-    channel = message.channel.name
+    channel = message.channel.id
     channel_id = message.channel.id
     is_deleted = True
 
     if isinstance(message.channel, discord.Thread):
-        channel = "[FORUM] " + message.channel.name
+        channel = "[FORUM] " + message.channel.id
     if isinstance(message.channel, discord.TextChannel):
-        channel = "[CHANNEL]" + message.channel.name
+        channel = "[CHANNEL]" + message.channel.id
 
     async with aiofiles.open(f"{message.guild.id}.csv", "a+", encoding="utf-8", newline="") as f:
         writer = aiocsv.AsyncWriter(f)
@@ -85,15 +85,15 @@ async def on_message_edit(before, after):
     author = before.author.name
     before_content = before.clean_content or "N/A"
     after_content = after.clean_content or "N/A"
-    channel = before.channel.name
+    channel = before.channel.id
     channel_id = before.channel.id
 
     is_edited = True
 
     if isinstance(before.channel, discord.Thread):
-        channel = "[FORUM] " + before.channel.name
+        channel = "[FORUM] " + before.channel.id
     if isinstance(before.channel, discord.TextChannel):
-        channel = "[CHANNEL] " + before.channel.name
+        channel = "[CHANNEL] " + before.channel.id
 
     async with aiofiles.open(f"{before.guild.id}.csv", "a+", encoding="utf-8", newline="") as f:
         writer = aiocsv.AsyncWriter(f)
